@@ -5,6 +5,7 @@ using UnityEngine;
 public class Roboter : MonoBehaviour
 {
     public float step = 1f;
+    public float turn = 90f;
 
 
     // Start is called before the first frame update
@@ -44,6 +45,22 @@ public class Roboter : MonoBehaviour
             // move roboter left
             transform.Translate(-step,0,0);
         }
+
+
+
+        // rotate on the y-axis 
+
+        if(Input.GetKeyDown("q"))
+        {
+            // rotate roboter left
+            transform.Rotate(0,-turn,0);
+        }   
+
+        if(Input.GetKeyDown("e"))
+        {
+            // rotate roboter right
+            transform.Rotate(0,turn,0);
+        }              
 
 
     }
