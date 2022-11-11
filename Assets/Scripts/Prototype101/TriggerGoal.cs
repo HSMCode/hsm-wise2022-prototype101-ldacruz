@@ -11,7 +11,6 @@ public class TriggerGoal : MonoBehaviour
         Debug.Log(other.name + " triggered into " + gameObject.name);
 
         // when roboter collides with goal
-
         if(other.name == Roboter.name)
         {
             Debug.Log("Victory");
