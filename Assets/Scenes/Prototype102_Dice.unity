@@ -225,10 +225,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1549481768}
+  - component: {fileID: 1549481764}
   - component: {fileID: 1549481767}
   - component: {fileID: 1549481766}
   - component: {fileID: 1549481765}
-  - component: {fileID: 1549481764}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Untagged
@@ -248,6 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2135308bc96774aad98a91da629f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diceNumber: 0
+  luckyNumbers: 0500000006000000
 --- !u!65 &1549481765
 BoxCollider:
   m_ObjectHideFlags: 0
