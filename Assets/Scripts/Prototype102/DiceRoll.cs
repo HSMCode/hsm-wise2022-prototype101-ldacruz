@@ -17,6 +17,9 @@ public class DiceRoll : MonoBehaviour
         // public int[] luckyNumbers = new int[3];  // just initializes the array with 3 empty slots
         public int[] luckyNumbers = {1,3,6}; // fills the variables in the array slots
 
+    // initialize win bool
+        public bool luckyNumberWasDrawn;
+
     // initialize array of game objects
         // public GameObject[] myGameObjectArray;
 
@@ -52,12 +55,16 @@ public class DiceRoll : MonoBehaviour
                 if(diceNumber == luckyNumbers[i])
                 {
                     Debug.Log("Congratulations: " + diceNumber + " is your lucky number today!");
+                    luckyNumberWasDrawn = true;
                 }
-                else if(i == (luckyNumbers.Length-1))
+                else if(i == (luckyNumbers.Length-1) && luckyNumberWasDrawn == false)
                 {
                     Debug.Log("Sorry. No luck! You lost.");
                 }
             }
+
+            // reset variable for redraw
+            luckyNumberWasDrawn = false;
 
             // alternative if statement using the array slots inside an or statement 
                 // if(diceNumber == luckyNumbers[0] || diceNumber == luckyNumbers[1] || diceNumber == luckyNumbers[2])
