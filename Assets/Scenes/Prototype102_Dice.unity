@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceNumber: 0
-  luckyNumbers: 0500000006000000
+  luckyNumbers: 040000000500000006000000
 --- !u!65 &1549481765
 BoxCollider:
   m_ObjectHideFlags: 0
