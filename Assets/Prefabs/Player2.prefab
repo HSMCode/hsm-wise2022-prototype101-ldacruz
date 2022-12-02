@@ -1963,9 +1963,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSpeed: 135
   speed: 15
-  force: 100
+  force: 150
   forceDown: 500
-  gravityModifier: 2
+  gravityModifier: 10
   isOnGround: 0
   isJumping: 0
   isFalling: 0

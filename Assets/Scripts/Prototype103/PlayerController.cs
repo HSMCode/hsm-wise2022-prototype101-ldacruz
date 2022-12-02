@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _playerRb;
     public float force;
     public float forceDown;
-    public float gravityModifier;
+    public float gravityModifier = 5f;
 
     public bool isOnGround;
     public bool isJumping;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         _playerAnim = GetComponent<Animator>();
         _playerRb = GetComponent<Rigidbody>();
 
-        Physics.gravity *= gravityModifier;
+        // Physics.gravity *= gravityModifier;
     }
 
     // Update is called once per frame
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // press space to jump - player is jumping
-        if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if(Input.GetKeyDown(KeyCode.Space) && isOnGround && !isFalling)
         {
             isOnGround = false;
             isJumping = true;
@@ -83,13 +83,17 @@ public class PlayerController : MonoBehaviour
     {
         if(isJumping)
         {
+            gravityModifier = 1f;
             _playerRb.AddForce(Vector3.up * force, ForceMode.Force);
         }
 
         if(isFalling || isOnGround)
         {
-            _playerRb.AddForce(Vector3.down * forceDown * _playerRb.mass);
+           // _playerRb.AddForce(Vector3.down * forceDown * _playerRb.mass);
+           gravityModifier = 50f;
         }
+
+        _playerRb.AddForce(Physics.gravity * (gravityModifier - 1) * _playerRb.mass);
     }
 
     // private void OnTriggerEnter(Collider other)
@@ -105,16 +109,13 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
+            isOnGround = true;
 
             if(isFalling)
             {
                 _playerAnim.SetBool("Fall", false);
-                
+                isFalling = false;
             }
-
-            isOnGround = true;
-            isFalling = false;
-
         }
     }
 
