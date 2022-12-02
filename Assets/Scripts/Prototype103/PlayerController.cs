@@ -12,9 +12,13 @@ public class PlayerController : MonoBehaviour
     private Animator _playerAnim;
 
     private Rigidbody _playerRb;
-    public Vector3 force;
+    public float force;
+    public float forceDown;
+    public float gravityModifier;
 
     public bool isOnGround;
+    public bool isJumping;
+    public bool isFalling;
 
 
     // Start is called before the first frame update
@@ -22,11 +26,15 @@ public class PlayerController : MonoBehaviour
     {
         _playerAnim = GetComponent<Animator>();
         _playerRb = GetComponent<Rigidbody>();
+
+        Physics.gravity *= gravityModifier;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // player is walking and running 
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
@@ -44,13 +52,43 @@ public class PlayerController : MonoBehaviour
             _playerAnim.SetBool("Walk", false);    
         }
 
-
+        // press space to jump - player is jumping
         if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            _playerRb.AddForce(force, ForceMode.Impulse);
-            _playerAnim.SetTrigger("Jump");
-
             isOnGround = false;
+            isJumping = true;
+
+            if(isJumping)
+            {
+                _playerAnim.SetTrigger("Jump");
+
+                //_playerRb.AddForce(force, ForceMode.Impulse);
+            }
+        }
+
+        // release space to start falling - player isFalling
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            isJumping = false;
+            isFalling = true;
+
+            if(isFalling)
+            {
+                _playerAnim.SetBool("Fall", true);
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(isJumping)
+        {
+            _playerRb.AddForce(Vector3.up * force, ForceMode.Force);
+        }
+
+        if(isFalling || isOnGround)
+        {
+            _playerRb.AddForce(Vector3.down * forceDown * _playerRb.mass);
         }
     }
 
@@ -67,7 +105,16 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
+
+            if(isFalling)
+            {
+                _playerAnim.SetBool("Fall", false);
+                
+            }
+
             isOnGround = true;
+            isFalling = false;
+
         }
     }
 

@@ -1961,11 +1961,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d6a6db5ab0430d81157b5ba32de78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalInput: 0
-  forwardInput: 0
-  speed: 15
   turnSpeed: 135
-  force: {x: 0, y: 5, z: 0}
+  speed: 15
+  force: 100
+  forceDown: 500
+  gravityModifier: 2
+  isOnGround: 0
+  isJumping: 0
+  isFalling: 0
 --- !u!54 &5118827594090653607
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1981,7 +1984,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &6817080569249220266
 CapsuleCollider:
   m_ObjectHideFlags: 0
