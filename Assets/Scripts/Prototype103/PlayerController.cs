@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _playerRb;
     public Vector3 force;
 
+    public bool isOnGround;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,10 +45,57 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             _playerRb.AddForce(force, ForceMode.Impulse);
             _playerAnim.SetTrigger("Jump");
+
+            isOnGround = false;
         }
     }
+
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if(other.gameObject.CompareTag("Ground"))
+    //     {
+    //         isOnGround = true;
+    //     }
+    // }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
