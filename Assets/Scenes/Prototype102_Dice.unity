@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: f0067f4ad756a8d46afe8b6066833524, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 64297ec4402cc064cb5403ee26446c7f, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -250,6 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceNumber: 0
   luckyNumbers: 040000000500000006000000
+  luckyNumberWasDrawn: 0
 --- !u!65 &1549481765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -337,6 +338,7 @@ GameObject:
   - component: {fileID: 1714505776}
   - component: {fileID: 1714505775}
   - component: {fileID: 1714505774}
+  - component: {fileID: 1714505777}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -409,3 +411,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1714505777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714505773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8161504e932fba94aab8e05e1e647c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
