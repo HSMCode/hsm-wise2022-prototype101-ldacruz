@@ -40,7 +40,7 @@ public class UpdateScoreTimer : MonoBehaviour
     {
         _gameUI = GameObject.Find("Game");
         _gameOverUI = GameObject.Find("GameOver");
-
+        
         scoreUI = GameObject.Find("Score").GetComponent<Text>();
         timerUI = GameObject.Find("Timer").GetComponent<Text>();
         resultUI = GameObject.Find("Result").GetComponent<Text>();
@@ -85,8 +85,7 @@ public class UpdateScoreTimer : MonoBehaviour
             }
         }
     }
-
-
+    
 
     private void CheckGameOver()
     {
@@ -96,27 +95,38 @@ public class UpdateScoreTimer : MonoBehaviour
             gameWon = true;
             gameOver = true;
 
-            resultUI.text = resultWin;
-            resultUI.color = Color.green;
+            StartCoroutine(GameOver());
         }
         // GameOver LOST
         else if(currentScore < winScore && !countingDown)
         {
             gameLost = true;
             gameOver = true;
+            
+            StartCoroutine(GameOver());
+        }
+        
+    }
+    
+    // Coroutine, when game over is true. Display UI after x seconds delay
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2f);
 
+        if (gameWon)
+        {
+            resultUI.text = resultWin;
+            resultUI.color = Color.green;
+        }
+        else if (gameLost)
+        {
             resultUI.text = resultLost;
             resultUI.color = Color.red;
         }
 
-        // Change the UI to display the GameOver screen
-        if(gameOver)
-        {
-            _gameUI.SetActive(false);
-            _gameOverUI.SetActive(true);
-        }
+        _gameUI.SetActive(false);
+        _gameOverUI.SetActive(true);
 
     }
-
-
+    
 }
