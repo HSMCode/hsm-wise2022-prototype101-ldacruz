@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UpdateScoreTimer : MonoBehaviour
 {
@@ -31,7 +32,9 @@ public class UpdateScoreTimer : MonoBehaviour
     public bool gameOver;
     private bool gameWon;
     private bool gameLost;
-
+    
+    // variables for enemies
+    public int destroyedEnemies;
 
     void Start()
     {
@@ -54,6 +57,11 @@ public class UpdateScoreTimer : MonoBehaviour
         {
             currentScore += addScore;
             scoreUI.text = scoreText + currentScore.ToString();            
+        }
+        
+        if(Input.GetKeyDown(KeyCode.R) && gameOver)
+        {
+            SceneManager.LoadScene(3);
         }
     }
 

@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class MoveEnemies : MonoBehaviour
 {
     private Rigidbody _enemyRb;
     private GameObject _player;
+    private UpdateScoreTimer _updateScoreTimerScript;
 
     [SerializeField] float speed;
 
@@ -16,6 +19,8 @@ public class MoveEnemies : MonoBehaviour
         
         // make sure to set the tag "Player" on your player character for this to work
         _player = GameObject.FindWithTag("Player");
+
+        _updateScoreTimerScript = GameObject.Find("UpdateScore").GetComponent<UpdateScoreTimer>();
     }
     
     void FixedUpdate()
@@ -24,8 +29,18 @@ public class MoveEnemies : MonoBehaviour
         _enemyRb.AddForce((_player.transform.position - transform.position).normalized * speed);
         // Debug.Log("Player: " + _player.transform.position + "Enemy: " + transform.position);
     }
-    
-    
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            _updateScoreTimerScript.destroyedEnemies++;
+            Destroy(this.gameObject);
+        }
+    }
+
+
     // For debugging we can add gizmos to help visualise depth and distance a bit better
     void OnDrawGizmosSelected()
     {
