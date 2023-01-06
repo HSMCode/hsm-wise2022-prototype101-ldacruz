@@ -85,6 +85,14 @@ public class UpdateScoreTimer : MonoBehaviour
             }
         }
     }
+
+    public void UpdateScoreEnemyDeath()
+    {
+        destroyedEnemies++;
+        currentScore += addScore;
+        scoreUI.text = scoreText + currentScore.ToString();  
+        CheckGameOver();
+    }
     
 
     private void CheckGameOver()

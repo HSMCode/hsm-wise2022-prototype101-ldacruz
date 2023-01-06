@@ -35,7 +35,7 @@ public class MoveEnemies : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            _updateScoreTimerScript.destroyedEnemies++;
+            _updateScoreTimerScript.UpdateScoreEnemyDeath();
             Destroy(this.gameObject);
         }
     }
